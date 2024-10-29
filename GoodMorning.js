@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, Pressable,FlatList,TextInput, StyleSheet, View, ScrollView } from 'react-native';
+import { Text, SafeAreaView, Pressable,FlatList,TextInput, StyleSheet, Image,View, ScrollView } from 'react-native';
 
 // You can import supported modules from npm
 import { Card } from 'react-native-paper';
@@ -6,7 +6,7 @@ import { Card } from 'react-native-paper';
 // or any files within the Snack
 import AssetExample from './components/AssetExample';
 
-export default function App() {
+export default function GoodMorning() {
 
 
     const data1 = [
@@ -25,22 +25,22 @@ export default function App() {
   const data3 =[
    {
      id:'1',
-     image:'',
+     image:require('./assets/Sia.jpg'),
      artist:'Sia'
    },
     {
      id:'2',
-     image:'',
+    image:require('./assets/charlieputh.jpg'),
      artist:'Charlie Puth '
    },
     {
      id:'3',
-     image:'',
+      image:require('./assets/Rihanna.jpg'),
      artist:'Rihanna'
    },
     {
      id:'4',
-     image:'',
+      image:require('./assets/ellie.jpg'),
      artist:'Ellie Goulding '
    },
 
@@ -82,12 +82,15 @@ const ItemTrending= ({image,nameSong,artistName})=>(
 const ItemArtist= ({image,artist})=>(
      <View style={{flexDirection:'row'}}>
     <View style={{justifyContent:'center', alignItems:'center'}}>
-                    <Pressable style={{backgroundColor:'green',height:100,width:100, marginLeft:10,justifyContent:'center', alignItems:'center',borderRadius:50 }}>
+                    <Pressable style={{backgroundColor:'green',height:100,width:100,marginTop:10 ,marginLeft:10,justifyContent:'center', alignItems:'center',borderRadius:50 }}>
                     <View>
+                    <Image source={image}
+                     style={{height:100, width:100,borderRadius:50}}
+                    ></Image>
                     </View>
                     </Pressable>
                   
-                     <Text style={{fontSize:10, marginLeft:10}}>{artist}</Text>
+                     <Text style={{fontSize:12, marginLeft:10}}>{artist}</Text>
                      <Pressable style={{backgroundColor:'black', height:25, width:70 , borderRadius:20, justifyContent:'center', alignItems:'center', marginLeft:10, marginTop:10}}><Text style={{color:'white'}}>Follow</Text></Pressable>
                       </View>
                     </View>
@@ -152,7 +155,7 @@ const ItemArtist= ({image,artist})=>(
    <View style={{marginLeft:10, marginTop:10}}><Text style={{fontWeight:'bold'}}>Popular artists</Text></View>
  <FlatList data={data3}
                      renderItem={({item})=><ItemArtist
-                  
+                    image={item.image} 
                        artist={item.artist} 
 
                       ></ItemArtist>}
