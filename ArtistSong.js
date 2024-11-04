@@ -5,7 +5,7 @@ import siaSongs from './SongData'; // Import dữ liệu bài hát
 export default function ArtistSong({ route, navigation }) {
     const { artist, avatar } = route.params;
 
-    const ItemSong = ({ title, artist, file, image }) => (
+    const ItemSong = ({ title, artist, file, image,duration }) => (
         <Pressable
             style={{ borderWidth: 1, height: 90, width: 360, borderBottomWidth: 1, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
             onPress={() => navigation.navigate('MusicPlayer', { title, artist, file })} 
@@ -17,6 +17,7 @@ export default function ArtistSong({ route, navigation }) {
             <View  style={{flexDirection:'column', marginLeft:20, marginTop:10}}>
             <Text style={{fontWeight:'bold'}} >{title}</Text>
             <Text >{artist}</Text>
+            <Text >{duration}</Text>
             </View>
             </View>
         </Pressable>
@@ -36,7 +37,7 @@ export default function ArtistSong({ route, navigation }) {
 
             <FlatList
                 data={siaSongs}
-                renderItem={({ item }) => <ItemSong title={item.title} image={item.image}  artist={item.artist} file={item.file} />}
+                renderItem={({ item }) => <ItemSong title={item.title} image={item.image}  artist={item.artist} file={item.file} duration={item.duration} />}
                 keyExtractor={item => item.id}
             />
         </View>

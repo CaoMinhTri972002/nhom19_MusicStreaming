@@ -11,7 +11,7 @@ const siaSongs = [
      {
         id: '2',
         title: 'CheapThrills',
-        image: require('./assets/unstoppableIcon.jpg'),
+        image: require('./assets/siacheapthrills.jpg'),
         artist: 'Sia',
         duration: '3:36',
         file: require('./music/CheapThrills.mp3')
@@ -19,7 +19,7 @@ const siaSongs = [
  {
         id: '3',
         title: 'Chandelier',
-        image: require('./assets/unstoppableIcon.jpg'),
+        image: require('./assets/chadilier.jpg'),
         artist: 'Sia',
         duration: '3:36',
         file: require('./music/Chandelier.mp3')

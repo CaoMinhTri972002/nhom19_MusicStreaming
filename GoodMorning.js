@@ -21,23 +21,7 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
         { id: '4', avatar: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
     ];
   
-    const ItemChart = ({ location }) => (
-        <View style={{ flexDirection: 'row' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{ backgroundColor: 'green', height: 100, width: 100, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={require('./assets/images.jpg')}
-                       style={{height:100, width:100}}
-                    ></Image>
-                    <View>
-                        <Text style={{ fontWeight: 'bold', color: 'white' }}>Top 50</Text>
-                        <Text style={{ color: 'white', marginTop: 10, marginLeft: 5 }}></Text>
-                    </View>
-                </Pressable>
-                <Text style={{ fontSize: 10 }}>Daily chart-toppers</Text>
-                <Text style={{ fontSize: 10 }}>update</Text>
-            </View>
-        </View>
-    );
+
 
     const ItemTrending = ({ nameSong, artistName }) => (
         <View style={{ flexDirection: 'row' }}>
@@ -75,11 +59,12 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={{ backgroundColor: 'gray', height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ backgroundColor: 'green', height: 25, width: 50 }}></View>
+                <View style={{ backgroundColor: 'white', height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft:10 }}>
+                   <Image source={require('./assets/1.png')}
+                        style={{height: 25, width: 50}}
+                   ></Image>
                     <View style={{ flex: 1, flexDirection: 'row', marginLeft: 150 }}>
-                        <View style={{ backgroundColor: 'green', height: 25, width: 50 }}></View>
-                        <View style={{ backgroundColor: 'green', height: 25, marginLeft: 25, width: 50 }}></View>
+                        <Image  source={require('./assets/user.png')}      style={{  height: 45, marginLeft: 110, width: 50 }}></Image>
                     </View>
                 </View>
 
