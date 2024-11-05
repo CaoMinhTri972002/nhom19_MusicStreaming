@@ -21,18 +21,34 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
         { id: '4', avatar: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
     ];
   
+    const trending =[
+        { id: '1', image: require('./assets/Sia.jpg'), artist: 'Sia' },
+        { id: '2', image: require('./assets/charlieputh.jpg'), artist: 'Charlie Puth' },
+        { id: '3', image: require('./assets/Rihanna.jpg'), artist: 'Rihanna' },
+        { id: '4', image: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
+
+    ]
 
 
-    const ItemTrending = ({ nameSong, artistName }) => (
+
+
+
+
+
+
+
+    const ItemTrending = ({image, artist }) => (
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{ backgroundColor: 'green', height: 100, width: 100, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
+                <Pressable style={{  marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
                     <View>
-                        {/* Placeholder for future image */}
+                        <Image source={image}
+                        style={{ height: 100, width: 100, borderRadius:8}}
+                        ></Image>
                     </View>
                 </Pressable>
-                <Text style={{ fontSize: 10 }}>{nameSong}</Text>
-                <Text style={{ fontSize: 10 }}>{artistName}</Text>
+                {/* <Text style={{ fontSize: 10 }}>{nameSong}</Text> */}
+                <Text style={{ fontSize: 10 }}>{artist}</Text>
             </View>
         </View>
     );
@@ -59,7 +75,7 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={{ backgroundColor: 'white', height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft:10 }}>
+                <View style={{height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft:10 }}>
                    <Image source={require('./assets/1.png')}
                         style={{height: 25, width: 50}}
                    ></Image>
@@ -71,14 +87,19 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
                 <View style={{ marginLeft: 10, marginTop: 20 }}>
                     <Text>Good morning,</Text>
                     <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Ashley Scott</Text>
-                    <TextInput placeholder='What you want to listen to' style={{ height: 30, borderWidth: 1, borderRadius: 20, marginTop: 10 }} />
+                    <TextInput placeholder='What you want to listen to' style={{ height: 35, borderWidth: 1, borderRadius: 20, marginTop: 10 }} />
                 </View>
 
                 <View style={{ marginTop: 20, marginLeft: 10 }}>
                     <Text style={{ fontWeight: 'bold' }}>Suggestions for you</Text>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <View style={{ backgroundColor: 'pink', height: 180, marginLeft: 10, width: 120 }}></View>
-                        <View style={{ backgroundColor: 'pink', height: 180, marginLeft: 10, width: 120 }}></View>
+                        <Image source={require('./assets/Suggest1.jpg')}
+                         style={{height:250, width:200, borderRadius:8}}
+                        ></Image>
+                        <Image source={require('./assets/suggest2.jpg')}
+                         style={{height:250, width:200, borderRadius:8, marginLeft:15}}
+                         >
+                         </Image>
                     </View>
                 </View>
 
@@ -144,8 +165,8 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
                         <Text style={{ fontWeight: 'bold' }}>Trending albums</Text>
                     </View>
                     <FlatList
-                        data={data2}
-                        renderItem={({ item }) => <ItemTrending nameSong={item.nameSong} artistName={item.artistName} />}
+                        data={trending}
+                        renderItem={({ item }) => <ItemTrending image={item.image}   artist={item.artist} />}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                     />
@@ -170,6 +191,6 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f0f8ff',
     },
 });

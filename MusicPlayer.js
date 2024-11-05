@@ -36,7 +36,7 @@ const MusicPlayer = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <Image
-                source={require('./assets/wallpaperflare.com_wallpaper.jpg')}
+                source={require('./assets/giphy.webp')}
                 style={{ height: '100%', width: '100%' }}
             ></Image>
             {/* View bao quanh tiêu đề và nút để đặt chồng lên hình */}
@@ -44,10 +44,14 @@ const MusicPlayer = ({ route, navigation }) => {
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.artist}>{artist}</Text>
                 <Pressable
-                    style={{ borderWidth: 1, borderRadius: 50, height: 50, width: 50, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}
+                    style={{ backgroundColor:'#dcdcdc',borderRadius: 10, height: 50, width: 60, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}
                     onPress={togglePlayPause}
                 >
-                    <Text style={{ color: 'black' }}>{isPlaying ? '| |' : '>'}</Text>
+                   {isPlaying ? <Image source={require('./assets/stop.png')}
+                                                                    style={{height:35, width:35}}
+                    ></Image> : <Image source={require('./assets/play.png')}
+                    style={{height:35, width:35}}
+></Image>}
                 </Pressable>
             </View>
         </View>
@@ -57,8 +61,8 @@ const MusicPlayer = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-    title: { fontSize: 24, fontWeight: 'bold' },
-    artist: { fontSize: 18, color: '#666', marginVertical: 10 },
+    title: { color: 'white',fontSize: 24, fontWeight: 'bold' },
+    artist: { fontSize: 18, color: '#dcdcdc', marginVertical: 10 },
   
 });
 

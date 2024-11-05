@@ -7,7 +7,7 @@ export default function ArtistSong({ route, navigation }) {
 
     const ItemSong = ({ title, artist, file, image,duration }) => (
         <Pressable
-            style={{ borderWidth: 1, height: 90, width: 360, borderBottomWidth: 1, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
+            style={{ borderWidth: 1, height: 90, width: 360, borderBottomWidth: 0.5, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
             onPress={() => navigation.navigate('MusicPlayer', { title, artist, file })} 
         >
             <View style={{flexDirection:'row', marginTop:3}}>
@@ -31,7 +31,7 @@ export default function ArtistSong({ route, navigation }) {
                 <Text>65K Người theo dõi</Text>
             </View>
             <Pressable style={styles.followButton}>
-                <Text style={styles.followButtonText}>Theo dõi</Text>
+                <Text style={styles.followButtonText}>Follow</Text>
             </Pressable>
             <Text style={styles.popularText}>Popular</Text>
 
@@ -45,7 +45,7 @@ export default function ArtistSong({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor: 'white' },
+    container: { flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor: '#f0f8ff' },
     header: { justifyContent: 'center', alignItems: 'center' },
     avatar: { height: 200, width: 200, borderRadius: 100 },
     artistName: { fontWeight: 'bold', fontSize: 20, marginTop: 10 },
