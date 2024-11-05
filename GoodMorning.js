@@ -1,4 +1,6 @@
 import { Text, View, Pressable, FlatList, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
+import songsData from './SongData';
+
 
 export default function GoodMorning({ navigation }) { // Nhận navigation như một props
     const data1 = [
@@ -29,14 +31,6 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
 
     ]
 
-
-
-
-
-
-
-
-
     const ItemTrending = ({image, artist }) => (
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -57,7 +51,7 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Pressable
-                    onPress={() => navigation.navigate('ArtistSong', { artist, avatar })} // Thêm điều hướng
+                    onPress={() => navigation.navigate('ArtistSong', { artist, avatar, songs: songsData[artist.trim().toLowerCase().replace(/\s+/g, '')] })} 
                     style={{ backgroundColor: 'green', height: 100, width: 100, marginTop: 10, marginLeft: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}
                 >
                     <View>
@@ -71,7 +65,6 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
             </View>
         </View>
     );
-
     return (
         <ScrollView>
             <View style={styles.container}>

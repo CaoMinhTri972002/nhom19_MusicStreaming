@@ -1,24 +1,22 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Pressable, FlatList } from 'react-native';
-import siaSongs from './SongData'; // Import dữ liệu bài hát
+// Import dữ liệu bài hát
 
 export default function ArtistSong({ route, navigation }) {
-    const { artist, avatar } = route.params;
+    const { artist, avatar, songs } = route.params; // Nhận dữ liệu bài hát từ params
 
-    const ItemSong = ({ title, artist, file, image,duration }) => (
+    const ItemSong = ({ title, artist, file, image, duration }) => (
         <Pressable
             style={{ borderWidth: 1, height: 90, width: 360, borderBottomWidth: 0.5, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
             onPress={() => navigation.navigate('MusicPlayer', { title, artist, file })} 
         >
-            <View style={{flexDirection:'row', marginTop:3}}>
-            <Image source={ image}
-             style={{height:80, width:80, borderRadius:10}}
-            ></Image>
-            <View  style={{flexDirection:'column', marginLeft:20, marginTop:10}}>
-            <Text style={{fontWeight:'bold'}} >{title}</Text>
-            <Text >{artist}</Text>
-            <Text >{duration}</Text>
-            </View>
+            <View style={{ flexDirection: 'row', marginTop: 3 }}>
+                <Image source={image} style={{ height: 80, width: 80, borderRadius: 10 }} />
+                <View style={{ flexDirection: 'column', marginLeft: 20, marginTop: 10 }}>
+                    <Text style={{ fontWeight: 'bold' }}>{title}</Text>
+                    <Text>{artist}</Text>
+                    <Text>{duration}</Text>
+                </View>
             </View>
         </Pressable>
     );
@@ -36,8 +34,8 @@ export default function ArtistSong({ route, navigation }) {
             <Text style={styles.popularText}>Popular</Text>
 
             <FlatList
-                data={siaSongs}
-                renderItem={({ item }) => <ItemSong title={item.title} image={item.image}  artist={item.artist} file={item.file} duration={item.duration} />}
+                data={songs} 
+                renderItem={({ item }) => <ItemSong title={item.title} image={item.image} artist={item.artist} file={item.file} duration={item.duration} />}
                 keyExtractor={item => item.id}
             />
         </View>
@@ -51,5 +49,5 @@ const styles = StyleSheet.create({
     artistName: { fontWeight: 'bold', fontSize: 20, marginTop: 10 },
     followButton: { height: 45, width: 100, borderWidth: 1, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 10 },
     followButtonText: { fontSize: 18 },
-    popularText: { fontWeight: 'bold', fontSize: 20, marginTop: 20, marginRight:280 },
+    popularText: { fontWeight: 'bold', fontSize: 20, marginTop: 20, marginRight: 280 },
 });
