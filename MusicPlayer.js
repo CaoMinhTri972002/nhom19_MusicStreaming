@@ -1,12 +1,11 @@
-// MusicPlayer.js
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable ,Image} from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { Audio } from 'expo-av';
 
 const MusicPlayer = ({ route, navigation }) => {
-    const { title, artist, file } = route.params; 
+    const { title, artist, file } = route.params;
     const [sound, setSound] = useState();
-    const [isPlaying, setIsPlaying] = useState(false); 
+    const [isPlaying, setIsPlaying] = useState(false);
 
     // Hàm phát/dừng nhạc
     const togglePlayPause = async () => {
@@ -37,33 +36,78 @@ const MusicPlayer = ({ route, navigation }) => {
         <View style={styles.container}>
             <Image
                 source={require('./assets/giphy.webp')}
-                style={{ height: '100%', width: '100%' }}
-            ></Image>
-            {/* View bao quanh tiêu đề và nút để đặt chồng lên hình */}
-            <View style={{ position: 'absolute', top: '30%', alignItems: 'center', width: '100%' }}>
+                style={styles.backgroundImage}
+            />
+
+            <View style={styles.overlay}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.artist}>{artist}</Text>
+
                 <Pressable
-                    style={{ backgroundColor:'#dcdcdc',borderRadius: 10, height: 50, width: 60, justifyContent: 'center', alignItems: 'center', marginTop: 20 }}
+                    style={styles.playPauseButton}
                     onPress={togglePlayPause}
                 >
-                   {isPlaying ? <Image source={require('./assets/stop.png')}
-                                                                    style={{height:35, width:35}}
-                    ></Image> : <Image source={require('./assets/play.png')}
-                    style={{height:35, width:35}}
-></Image>}
+                    {isPlaying ? (
+                        <Image source={require('./assets/stop.png')} style={styles.icon} />
+                    ) : (
+                        <Image source={require('./assets/play.png')} style={styles.icon} />
+                    )}
                 </Pressable>
             </View>
         </View>
     );
-    
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-    title: { color: 'white',fontSize: 24, fontWeight: 'bold' },
-    artist: { fontSize: 18, color: '#dcdcdc', marginVertical: 10 },
-  
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'black',
+    },
+    backgroundImage: {
+        position: 'absolute',
+        height: '100%',
+        width: '100%',
+        opacity: 0.7,  // Giảm độ sáng của ảnh nền
+    },
+    overlay: {
+        position: 'absolute',
+        top: '30%',
+        alignItems: 'center',
+        width: '100%',
+        paddingHorizontal: 20,
+    },
+    title: {
+        color: 'white',
+        fontSize: 28,
+        fontWeight: 'bold',
+        textShadowColor: '#000000',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        marginBottom: 10,
+    },
+    artist: {
+        fontSize: 20,
+        color: '#dcdcdc',
+        marginBottom: 30,
+        textShadowColor: '#000000',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+    },
+    playPauseButton: {
+        backgroundColor: '#dcdcdc',
+        borderRadius: 50,
+        height: 70,
+        width: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5, // Thêm hiệu ứng nổi cho nút
+    },
+    icon: {
+        height: 40,
+        width: 40,
+    },
 });
 
 export default MusicPlayer;

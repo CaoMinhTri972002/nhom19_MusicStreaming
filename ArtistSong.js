@@ -7,7 +7,7 @@ export default function ArtistSong({ route, navigation }) {
 
     const ItemSong = ({ title, artist, file, image, duration }) => (
         <Pressable
-            style={{ borderWidth: 1, height: 90, width: 360, borderBottomWidth: 0.5, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
+            style={{ borderWidth: 1, height: 90, width: 356, borderBottomWidth: 0.5, borderColor: '#ccc', borderRadius: 10, backgroundColor: 'white' }}
             onPress={() => navigation.navigate('MusicPlayer', { title, artist, file })} 
         >
             <View style={{ flexDirection: 'row', marginTop: 3 }}>
@@ -45,9 +45,9 @@ export default function ArtistSong({ route, navigation }) {
 const styles = StyleSheet.create({
     container: { flex: 1, alignItems: 'center', paddingTop: 20, backgroundColor: '#f0f8ff' },
     header: { justifyContent: 'center', alignItems: 'center' },
-    avatar: { height: 200, width: 200, borderRadius: 100 },
-    artistName: { fontWeight: 'bold', fontSize: 20, marginTop: 10 },
-    followButton: { height: 45, width: 100, borderWidth: 1, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 10 },
+    avatar: { height: 150, width: 150, borderRadius: 100 },
+    artistName: { fontWeight: 'bold', fontSize: 18, marginTop: 10 },
+    followButton: { height: 40, width: 90, borderWidth: 1, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginTop: 10 },
     followButtonText: { fontSize: 18 },
     popularText: { fontWeight: 'bold', fontSize: 20, marginTop: 20, marginRight: 280 },
 });

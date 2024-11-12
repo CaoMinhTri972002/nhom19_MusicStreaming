@@ -1,8 +1,7 @@
 import { Text, View, Pressable, FlatList, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
 import songsData from './SongData';
 
-
-export default function GoodMorning({ navigation }) { // Nhận navigation như một props
+export default function GoodMorning({ navigation }) {
     const data1 = [
         { id: '1', location: 'Korea' },
         { id: '2', location: 'Global' },
@@ -22,27 +21,23 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
         { id: '3', avatar: require('./assets/Rihanna.jpg'), artist: 'Rihanna' },
         { id: '4', avatar: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
     ];
-  
-    const trending =[
+
+    const trending = [
         { id: '1', image: require('./assets/Sia.jpg'), artist: 'Sia' },
         { id: '2', image: require('./assets/charlieputh.jpg'), artist: 'Charlie Puth' },
         { id: '3', image: require('./assets/Rihanna.jpg'), artist: 'Rihanna' },
         { id: '4', image: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
+    ];
 
-    ]
-
-    const ItemTrending = ({image, artist }) => (
+    const ItemTrending = ({ image, artist }) => (
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{  marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
+                <Pressable style={styles.itemContainer}>
                     <View>
-                        <Image source={image}
-                        style={{ height: 100, width: 100, borderRadius:8}}
-                        ></Image>
+                        <Image source={image} style={styles.imageItem} />
                     </View>
                 </Pressable>
-                {/* <Text style={{ fontSize: 10 }}>{nameSong}</Text> */}
-                <Text style={{ fontSize: 10 }}>{artist}</Text>
+                <Text style={styles.itemText}>{artist}</Text>
             </View>
         </View>
     );
@@ -51,127 +46,85 @@ export default function GoodMorning({ navigation }) { // Nhận navigation như 
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Pressable
-                    onPress={() => navigation.navigate('ArtistSong', { artist, avatar, songs: songsData[artist.trim().toLowerCase().replace(/\s+/g, '')] })} 
-                    style={{ backgroundColor: 'green', height: 100, width: 100, marginTop: 10, marginLeft: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}
+                    onPress={() => navigation.navigate('ArtistSong', { artist, avatar, songs: songsData[artist.trim().toLowerCase().replace(/\s+/g, '')] })}
+                    style={styles.artistButton}
                 >
-                    <View>
-                        <Image source={avatar} style={{ height: 100, width: 100, borderRadius: 50 }} />
-                    </View>
+                    <Image source={avatar} style={styles.artistImage} />
                 </Pressable>
-                <Text style={{ fontSize: 12, marginLeft: 10 }}>{artist}</Text>
-                <Pressable style={{ backgroundColor: 'black', height: 25, width: 70, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginTop: 10 }}>
+                <Text style={styles.artistName}>{artist}</Text>
+                <Pressable style={styles.followButton}>
                     <Text style={{ color: 'white' }}>Follow</Text>
                 </Pressable>
             </View>
         </View>
     );
+
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={{height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft:10 }}>
-                   <Image source={require('./assets/1.png')}
-                        style={{height: 25, width: 50}}
-                   ></Image>
-                    <View style={{ flex: 1, flexDirection: 'row', marginLeft: 150 }}>
-                        <Image  source={require('./assets/user.png')}      style={{  height: 45, marginLeft: 110, width: 50 }}></Image>
+                <View style={styles.header}>
+                    <Image source={require('./assets/1.png')} style={styles.logo} />
+                    <View style={styles.headerRight}>
+                        <Image source={require('./assets/user.png')} style={styles.userIcon} />
                     </View>
                 </View>
 
-                <View style={{ marginLeft: 10, marginTop: 20 }}>
+                <View style={styles.greeting}>
                     <Text>Good morning,</Text>
-                    <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Ashley Scott</Text>
-                    <TextInput placeholder='What you want to listen to' style={{ height: 35, borderWidth: 1, borderRadius: 20, marginTop: 10 }} />
+                    <Text style={styles.greetingName}>Ashley Scott</Text>
+                    <TextInput placeholder='What you want to listen to' style={styles.searchInput} />
                 </View>
 
-                <View style={{ marginTop: 20, marginLeft: 10 }}>
-                    <Text style={{ fontWeight: 'bold' }}>Suggestions for you</Text>
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <Image source={require('./assets/Suggest1.jpg')}
-                         style={{height:250, width:200, borderRadius:8}}
-                        ></Image>
-                        <Image source={require('./assets/suggest2.jpg')}
-                         style={{height:250, width:200, borderRadius:8, marginLeft:15}}
-                         >
-                         </Image>
+                <View style={styles.suggestions}>
+                    <Text style={styles.sectionTitle}>Suggestions for you</Text>
+                    <View style={styles.suggestionsImages}>
+                        <Image source={require('./assets/Suggest1.jpg')} style={styles.suggestionImage} />
+                        <Image source={require('./assets/suggest2.jpg')} style={[styles.suggestionImage, styles.suggestionImageMargin]} />
                     </View>
                 </View>
 
-                <View>
-                    <View style={{ marginLeft: 10, marginTop: 10 }}>
-                        <Text style={{ fontWeight: 'bold' }}>Charts</Text>
+                <View style={styles.chartSection}>
+                    <Text style={styles.sectionTitle}>Charts</Text>
+                    <View style={styles.chartItems}>
+                        <View style={styles.chartItem}>
+                            <Pressable style={styles.chartImageButton}>
+                                <Image source={require('./assets/top50Can.jpg')} style={styles.chartImage} />
+                            </Pressable>
+                            <Text style={styles.chartText}>Daily chart-toppers</Text>
+                            <Text style={styles.chartText}>update</Text>
+                        </View>
+                        <View style={styles.chartItem}>
+                            <Pressable style={styles.chartImageButton}>
+                                <Image source={require('./assets/50global.jpg')} style={styles.chartImage} />
+                            </Pressable>
+                            <Text style={styles.chartText}>Daily chart-toppers</Text>
+                            <Text style={styles.chartText}>update</Text>
+                        </View>
+                        <View style={styles.chartItem}>
+                            <Pressable style={styles.chartImageButton}>
+                                <Image source={require('./assets/50USA.jpg')} style={styles.chartImage} />
+                            </Pressable>
+                            <Text style={styles.chartText}>Daily chart-toppers</Text>
+                            <Text style={styles.chartText}>update</Text>
+                        </View>
                     </View>
-                   
-                   <View style={{ flexDirection: 'row' }}>
-                    <View style={{ flexDirection: 'row' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{ height: 150, width: 150, marginLeft: 10, justifyContent: 'center', alignItems: 'center' , borderRadius:10}}>
-                    <View>
-                    <Image source={require('./assets/top50Can.jpg')}
-                       style={{height:150, width:150,borderRadius:10}}
-                    ></Image>
-                
-                       </View>
-                </Pressable>
-                <Text style={{ fontSize: 10 }}>Daily chart-toppers</Text>
-                <Text style={{ fontSize: 10 }}>update</Text>
-            </View>
-        </View>
-        <View style={{ flexDirection: 'row' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{borderRadius:10,  height: 150, width: 150, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={require('./assets/50global.jpg')}
-                       style={{height:150, width:150,borderRadius:10}}
-                    ></Image>
-                   
-                </Pressable>
-                <Text style={{ fontSize: 10 }}>Daily chart-toppers</Text>
-                <Text style={{ fontSize: 10 }}>update</Text>
-            </View>
-        </View>
-        <View style={{ flexDirection: 'row' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Pressable style={{ borderRadius:10,backgroundColor: 'green', height: 150, width: 150, marginLeft: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={require('./assets/50USA.jpg')}
-                       style={{height:150, width:150,borderRadius:10}}
-                    ></Image>
-                    
-                </Pressable>
-                <Text style={{ fontSize: 10 }}>Daily chart-toppers</Text>
-                <Text style={{ fontSize: 10 }}>update</Text>
-            </View>
-        </View>
-        </View>
-
-
-
-
-
-
-
-
-
-
                 </View>
 
-                <View>
-                    <View style={{ marginLeft: 10, marginTop: 10 }}>
-                        <Text style={{ fontWeight: 'bold' }}>Trending albums</Text>
-                    </View>
+                <View style={styles.trendingSection}>
+                    <Text style={styles.sectionTitle}>Trending albums</Text>
                     <FlatList
                         data={trending}
-                        renderItem={({ item }) => <ItemTrending image={item.image}   artist={item.artist} />}
+                        renderItem={({ item }) => <ItemTrending image={item.image} artist={item.artist} />}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                     />
                 </View>
 
-                <View>
-                    <View style={{ marginLeft: 10, marginTop: 10 }}>
-                        <Text style={{ fontWeight: 'bold' }}>Popular artists</Text>
-                    </View>
+                <View style={styles.artistSection}>
+                    <Text style={styles.sectionTitle}>Popular artists</Text>
                     <FlatList
                         data={data3}
-                        renderItem={({ item }) => <ItemArtist avatar={item.avatar} artist={item.artist} navigation={navigation} />} // Truyền navigation
+                        renderItem={({ item }) => <ItemArtist avatar={item.avatar} artist={item.artist} navigation={navigation} />}
                         horizontal={true}
                         showsHorizontalScrollIndicator={true}
                     />
@@ -185,5 +138,140 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f0f8ff',
+    },
+    header: {
+        height: 50,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+    },
+    logo: {
+        height: 25,
+        width: 50,
+    },
+    headerRight: {
+        flex: 1,
+        flexDirection: 'row',
+        marginLeft: 150,
+    },
+    userIcon: {
+        height: 45,
+        marginLeft: 110,
+        width: 50,
+    },
+    greeting: {
+        marginLeft: 10,
+        marginTop: 20,
+    },
+    greetingName: {
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    searchInput: {
+        height: 35,
+        borderWidth: 1,
+        borderRadius: 20,
+        marginTop: 10,
+    },
+    suggestions: {
+        marginTop: 20,
+        marginLeft: 10,
+    },
+    sectionTitle: {
+        fontWeight: 'bold',
+    },
+    suggestionsImages: {
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    suggestionImage: {
+        height: 250,
+        width: 200,
+        borderRadius: 8,
+    },
+    suggestionImageMargin: {
+        marginLeft: 15,
+    },
+    chartSection: {
+        marginTop: 20,
+    },
+    chartItems: {
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    chartItem: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    chartImageButton: {
+        height: 150,
+        width: 150,
+        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    chartImage: {
+        height: 150,
+        width: 150,
+        borderRadius: 10,
+    },
+    chartText: {
+        fontSize: 10,
+    },
+    trendingSection: {
+        marginTop: 20,
+        marginLeft: 10,
+    },
+    artistSection: {
+        marginTop: 20,
+        marginLeft: 10,
+    },
+    itemContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    imageItem: {
+        height: 100,
+        width: 100,
+        borderRadius: 8,
+    },
+    itemText: {
+        fontSize: 12,
+        color: 'gray',
+    },
+    artistButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 15,
+    },
+    artistImage: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+    },
+    artistName: {
+        marginTop: 5,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    followButton: {
+        backgroundColor: 'black',
+        marginTop: 5,
+        padding: 5,
+        borderRadius: 8,
     },
 });
