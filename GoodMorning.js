@@ -1,7 +1,8 @@
 import { Text, View, Pressable, FlatList, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
 import songsData from './SongData';
 
-export default function GoodMorning({ navigation }) {
+export default function GoodMorning({ navigation, route }) {
+    const { username } = route.params; 
     const data1 = [
         { id: '1', location: 'Korea' },
         { id: '2', location: 'Global' },
@@ -71,7 +72,7 @@ export default function GoodMorning({ navigation }) {
 
                 <View style={styles.greeting}>
                     <Text>Good morning,</Text>
-                    <Text style={styles.greetingName}>Ashley Scott</Text>
+                    <Text style={styles.greeting}>{username}!</Text>
                     <TextInput placeholder='What you want to listen to' style={styles.searchInput} />
                 </View>
 
@@ -162,7 +163,8 @@ const styles = StyleSheet.create({
     },
     greeting: {
         marginLeft: 10,
-        marginTop: 20,
+        fontWeight:'bold',
+        fontSize:15
     },
     greetingName: {
         fontWeight: 'bold',
@@ -257,7 +259,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3, // for Android shadow
+        backgroundColor: 'white', // Adding background color helps the shadow be more visible
+        borderRadius: 50,
+        padding: 5, // Optional: adds some padding around the image
     },
+    
     artistImage: {
         height: 100,
         width: 100,
