@@ -73,7 +73,14 @@ export default function GoodMorning({ navigation, route }) {
                 <View style={styles.greeting}>
                     <Text>Good morning,</Text>
                     <Text style={styles.greeting}>{username}!</Text>
-                    <TextInput placeholder='What you want to listen to' style={styles.searchInput} />
+                    <Pressable onPress={() => { navigation.navigate('SearchScreen')}}   style={styles.searchInput} >
+                        <View style={{flexDirection:'row', marginLeftL:20}}>
+                        <Image source={require('./assets/searchIcon.png')}
+                                 style={{height:20, width:20, marginTop:7, marginLeft:10}}
+                        ></Image>
+                        <Text style={{marginTop:10, marginLeft:10}}>what you want to listen to ?</Text>
+                        </View>
+                    </Pressable>
                 </View>
 
                 <View style={styles.suggestions}>

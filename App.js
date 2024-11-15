@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import GoodMorning from './GoodMorning';
 import ArtistSong from './ArtistSong';
 import MusicPlayer from './MusicPlayer';
@@ -59,49 +59,36 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={isLoggedIn ? 'Main' : 'Start'}>
-                {/* Màn hình Start, là màn hình khởi đầu */}
-                <Stack.Screen 
-                    name="Start" 
-                    component={Start} 
-                    options={{ title: 'Start' }} 
-                />
+            <Stack.Navigator initialRouteName={isLoggedIn ? 'MainTabs' : 'Start'}>
+                {/* Màn hình Start */}
+                <Stack.Screen name="Start" component={Start} options={{ title: 'Start' }} />
+
                 {/* Màn hình đăng nhập */}
                 <Stack.Screen 
                     name="LoginScreen" 
                     component={LoginScreen} 
                     options={{ title: 'Login' }} 
-                    // Sau khi đăng nhập thành công, điều hướng tới GoodMorning
                     listeners={({ navigation }) => ({
                         focus: () => {
                             if (isLoggedIn) {
-                                navigation.replace('GoodMorning');
+                                navigation.replace('Main'); // Chuyển tới Main (MainTabs)
                             }
                         },
                     })}
                 />
+
                 {/* Màn hình chính chứa thanh tab */}
                 <Stack.Screen 
-                    name="Main" 
+                    name="MainTabs" 
                     component={MainTabs} 
-                    options={{ headerShown: false }} 
+                    options={{ headerShown: false }} // Ẩn header của MainTabs
                 />
-                {/* Các màn hình khác có thể có thêm */}
-                <Stack.Screen 
-                    name="GoodMorning" 
-                    component={GoodMorning} 
-                    options={{ title: 'Good Morning' }} 
-                />
-                <Stack.Screen 
-                    name="ArtistSong" 
-                    component={ArtistSong} 
-                    options={{ title: 'Artist Songs' }} 
-                />
-                <Stack.Screen 
-                    name="MusicPlayer" 
-                    component={MusicPlayer} 
-                    options={{ title: 'Music Player' }} 
-                />
+
+                {/* Các màn hình khác */}
+                <Stack.Screen name="GoodMorning" component={GoodMorning} />
+                <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ title: 'search' }} />
+                <Stack.Screen name="ArtistSong" component={ArtistSong} options={{ title: 'Artist Songs' }} />
+                <Stack.Screen name="MusicPlayer" component={MusicPlayer} options={{ title: 'Music Player' }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

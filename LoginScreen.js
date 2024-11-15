@@ -15,7 +15,8 @@ export default function LoginScreen({ navigation }) {
   
       if (user) {
         // Khi đăng nhập thành công, truyền tên người dùng vào màn hình GoodMorning
-        navigation.navigate('GoodMorning', { username: user.name });
+        navigation.replace('GoodMorning', { username: user.name });
+
       } else {
         setError('Email hoặc mật khẩu không đúng');
       }
