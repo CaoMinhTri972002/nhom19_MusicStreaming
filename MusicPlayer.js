@@ -4,33 +4,32 @@ import { Audio } from 'expo-av';
 
 const MusicPlayer = ({ route, navigation }) => {
     const { title, artist, file } = route.params;
-    const [sound, setSound] = useState();
+    const [sounds, setSound] = useState();
     const [isPlaying, setIsPlaying] = useState(false);
 
     // Hàm phát/dừng nhạc
     const togglePlayPause = async () => {
         if (isPlaying) {
-            await sound.pauseAsync(); // Dừng phát nhạc
+            await sounds.pauseAsync(); // Dừng phát nhạc
         } else {
-            if (sound) {
-                await sound.playAsync(); // Tiếp tục phát nhạc
+            if (sounds) {
+                await sounds.playAsync(); // Tiếp tục phát nhạc
             } else {
-                const { sound: newSound } = await Audio.Sound.createAsync(file); 
-                setSound(newSound);
-                await newSound.playAsync(); // Phát nhạc
+                const {sound} = await Audio.Sound.createAsync(file); 
+                setSound(sound);
+                await sound.playAsync(); //nếu dùng sounds thì trạng thái sẽ ko cập nhật liền sau 1 lần nhấn
             }
-        }
-        setIsPlaying(!isPlaying); 
+        } setIsPlaying(!isPlaying); 
     };
 
-    // Dọn dẹp âm thanh khi component unmount
+   
     useEffect(() => {
         return () => {
-            if (sound) {
-                sound.unloadAsync(); 
+            if (sounds) {
+                sounds.unloadAsync(); 
             }
         };
-    }, [sound]);
+    }, [sounds]);
 
     return (
         <View style={styles.container}>
