@@ -2,7 +2,7 @@ import { Text, View, Pressable, FlatList, TextInput, StyleSheet, Image, ScrollVi
 import songsData from './SongData';
 
 export default function GoodMorning({ navigation, route }) {
-    const { username } = route.params; 
+    const { username } = route.params;
     const data1 = [
         { id: '1', location: 'Korea' },
         { id: '2', location: 'Global' },
@@ -29,7 +29,6 @@ export default function GoodMorning({ navigation, route }) {
         { id: '3', image: require('./assets/Rihanna.jpg'), artist: 'Rihanna' },
         { id: '4', image: require('./assets/ellie.jpg'), artist: 'Ellie Goulding' },
     ];
-
     const ItemTrending = ({ image, artist }) => (
         <View style={{ flexDirection: 'row' }}>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -66,19 +65,21 @@ export default function GoodMorning({ navigation, route }) {
                 <View style={styles.header}>
                     <Image source={require('./assets/1.png')} style={styles.logo} />
                     <View style={styles.headerRight}>
-                        <Image source={require('./assets/user.png')} style={styles.userIcon} />
+                        <Pressable onPress={() => navigation.navigate('Profile')}>
+                            <Image source={require('./assets/user.png')} style={styles.userIcon} />
+                        </Pressable>
                     </View>
                 </View>
 
                 <View style={styles.greeting}>
                     <Text>Good morning,</Text>
                     <Text style={styles.greeting}>{username}!</Text>
-                    <Pressable onPress={() => { navigation.navigate('SearchScreen')}}   style={styles.searchInput} >
-                        <View style={{flexDirection:'row', marginLeftL:20}}>
-                        <Image source={require('./assets/searchIcon.png')}
-                                 style={{height:20, width:20, marginTop:7, marginLeft:10}}
-                        ></Image>
-                        <Text style={{marginTop:10, marginLeft:10}}>what you want to listen to ?</Text>
+                    <Pressable onPress={() => { navigation.navigate('SearchScreen') }} style={styles.searchInput} >
+                        <View style={{ flexDirection: 'row', marginLeftL: 20 }}>
+                            <Image source={require('./assets/searchIcon.png')}
+                                style={{ height: 20, width: 20, marginTop: 7, marginLeft: 10 }}
+                            ></Image>
+                            <Text style={{ marginTop: 10, marginLeft: 10 }}>what you want to listen to ?</Text>
                         </View>
                     </Pressable>
                 </View>
@@ -170,8 +171,8 @@ const styles = StyleSheet.create({
     },
     greeting: {
         marginLeft: 10,
-        fontWeight:'bold',
-        fontSize:15
+        fontWeight: 'bold',
+        fontSize: 15
     },
     greetingName: {
         fontWeight: 'bold',
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         padding: 5, // Optional: adds some padding around the image
     },
-    
+
     artistImage: {
         height: 100,
         width: 100,
