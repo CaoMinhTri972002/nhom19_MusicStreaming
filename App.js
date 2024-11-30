@@ -8,7 +8,9 @@ import ArtistSong from './ArtistSong';
 import MusicPlayer from './MusicPlayer';
 import SearchScreen from './SearchScreen';
 import Start from './Start';
+import RegisterScreen from './RegisterScreen';
 import LoginScreen from './LoginScreen';
+import ProfileScreen from './profileScreen';
 import { Ionicons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -62,12 +64,12 @@ export default function App() {
             <Stack.Navigator initialRouteName={isLoggedIn ? 'MainTabs' : 'Start'}>
                 {/* Màn hình Start */}
                 <Stack.Screen name="Start" component={Start} options={{ title: 'Start' }} />
-
+                <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ title: 'Register' }}/>
                 {/* Màn hình đăng nhập */}
-                <Stack.Screen 
-                    name="LoginScreen" 
-                    component={LoginScreen} 
-                    options={{ title: 'Login' }} 
+                <Stack.Screen
+                    name="LoginScreen"
+                    component={LoginScreen}
+                    options={{ title: 'Login' }}
                     listeners={({ navigation }) => ({
                         focus: () => {
                             if (isLoggedIn) {
@@ -78,9 +80,9 @@ export default function App() {
                 />
 
                 {/* Màn hình chính chứa thanh tab */}
-                <Stack.Screen 
-                    name="MainTabs" 
-                    component={MainTabs} 
+                <Stack.Screen
+                    name="MainTabs"
+                    component={MainTabs}
                     options={{ headerShown: false }} // Ẩn header của MainTabs
                 />
 
@@ -89,6 +91,7 @@ export default function App() {
                 <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ title: 'search' }} />
                 <Stack.Screen name="ArtistSong" component={ArtistSong} options={{ title: 'Artist Songs' }} />
                 <Stack.Screen name="MusicPlayer" component={MusicPlayer} options={{ title: 'Music Player' }} />
+                <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'Profile' }}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
