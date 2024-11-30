@@ -16,7 +16,8 @@ export default function Screen1({ navigation }) {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.createButton}>
+          <Pressable style={styles.createButton}
+           onPress={() => navigation.navigate('RegisterScreen')}>
             <Text style={styles.buttonText}>Create an account</Text>
           </Pressable>
           <Pressable 

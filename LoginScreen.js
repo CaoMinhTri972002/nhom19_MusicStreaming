@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,10 +10,12 @@ export default function LoginScreen({ navigation }) {
     try {
       const response = await fetch('https://65042ff8c8869921ae24a8f8.mockapi.io/demo1/api/v1/User');
       const data = await response.json();
-  
+
       const user = data.find((user) => user.email === email && user.password === password);
-  
+
       if (user) {
+        await AsyncStorage.setItem('userId', user.id);
+
         // Khi đăng nhập thành công, truyền tên người dùng vào màn hình GoodMorning
         navigation.replace('GoodMorning', { username: user.name });
 
@@ -25,11 +27,11 @@ export default function LoginScreen({ navigation }) {
       setError('Đã xảy ra lỗi khi đăng nhập');
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      
+
       <TextInput
         style={styles.input}
         placeholder="Email"
